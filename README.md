@@ -4,7 +4,7 @@
 
 https://s23wb64schreiner.onrender.com/
 
-class: Desserts
+class: Dessert
 attributes:
     1. rating: Number
     2. color: String
