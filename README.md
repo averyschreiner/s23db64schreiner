@@ -8,4 +8,4 @@ class: Dessert
 attributes:
     1. rating: Number
     2. color: String
-    3. tasteDescription: String
+    3. name: String
