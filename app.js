@@ -4,11 +4,39 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+require('dotenv').config();
+const connectionString = process.env.MONGO_CON
+mongoose = require('mongoose');
+mongoose.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: true});
+//Get the default connection
+var db = mongoose.connection;
+//Bind connection to error event
+db.on('error', console.error.bind(console, 'MongoDB connection error:'))
+db.once("open", function() {console.log("Connection to DB succeeded")});
+var Dessert = require("./models/dessert");
+
+// We can seed the collection if needed on
+async function recreateDB(){
+  // Delete everything
+  await Dessert.deleteMany();
+  let instance1 = new Dessert({name: 'Pie', rating: 10, color: 'light brown w/ either red, blue, orange, etc.'});
+  instance1.save()
+
+  let instance2 = new Dessert({name: 'Cookie', rating: 7, color: 'brown'});
+  instance2.save()
+
+  let instance3 = new Dessert({name: 'Ice Cream', rating: 10, color: 'usually white, but sometimes brown, pink, etc.'});
+  instance3.save()
+}
+let reseed = true;
+if (reseed) { recreateDB();}
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var dessertRouter = require('./routes/Dessert');
 var boardRouter = require('./routes/board');
 var selectorRouter = require('./routes/selector');
+var resourceRouter = require('./routes/resource');
 
 var app = express();
 
@@ -27,6 +55,7 @@ app.use('/users', usersRouter);
 app.use('/dessert', dessertRouter);
 app.use('/board', boardRouter);
 app.use('/selector', selectorRouter);
+app.use('/resource', resourceRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
