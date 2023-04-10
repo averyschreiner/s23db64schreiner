@@ -1,9 +1,7 @@
 var express = require('express');
 var router = express.Router();
+const dessert_controller = require('../controllers/desserts')
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('Dessert', { title: 'Search Results Dessert' });
-});
-
+router.get('/', dessert_controller.dessert_view_all_Page)
 module.exports = router;
