@@ -7,14 +7,14 @@ var dessert_controller = require('../controllers/desserts');
 // GET resources base.
 router.get('/', api_controller.api);
 /// COSTUME ROUTES ///
-// POST request for creating a Costume.
+// POST request for creating a Dessert.
 router.post('/desserts', dessert_controller.dessert_create_post);
-// DELETE request to delete Costume.
+// DELETE request to delete Dessert.
 router.delete('/desserts/:id', dessert_controller.dessert_delete);
-// PUT request to update Costume.
+// PUT request to update Dessert.
 router.put('/desserts/:id', dessert_controller.dessert_update_put);
-// GET request for one Costume.
+// GET request for one Dessert.
 router.get('/desserts/:id', dessert_controller.dessert_detail);
-// GET request for list of all Costume items.
+// GET request for list of all Dessert items.
 router.get('/desserts', dessert_controller.dessert_list);
 module.exports = router;
