@@ -17,4 +17,7 @@ router.put('/desserts/:id', dessert_controller.dessert_update_put);
 router.get('/desserts/:id', dessert_controller.dessert_detail);
 // GET request for list of all Dessert items.
 router.get('/desserts', dessert_controller.dessert_list);
+/* GET detail dessert page */
+router.get('/detail', dessert_controlers.dessert_view_one_Page);
+
 module.exports = router;
