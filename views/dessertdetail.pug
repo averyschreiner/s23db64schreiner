@@ -1,20 +1,21 @@
 extends layout
+
 block content
-h1= title
-- let dessertid = toShow._id
-- let dessert_type = toShow.dessert_type
-- let dessertcost = toShow.cost
-- let dessertsize = toShow.size
-div
-div.row
-div(class='dessertAttr mr-3') Dessert ID is:
-div #{dessertid}
-div.row
-div(class='dessertAttr mr-3') Dessert Type is:
-div #{dessert_type}
-div.row
-div(class='dessertAttr mr-3') Dessert Size is:
-div #{dessertsize}
-div.row
-div(class='dessertAttr mr-3') Dessert Cost is:
-div #{dessertcost}
+  h1= title
+  - let dessertid = toShow._id
+  - let dessertname = toShow.name
+  - let dessertrating = toShow.rating
+  - let dessertcolor = toShow.color
+  div
+    div.row
+      div(class='dessertAttr mr-3') Dessert ID is:
+      div #{dessertid}
+    div.row
+      div(class='dessertAttr mr-3') Dessert Name is:
+      div #{dessertname}
+    div.row
+      div(class='dessertAttr mr-3') Dessert Rating is:
+      div #{dessertrating}
+    div.row
+      div(class='dessertAttr mr-3') Dessert Color is:
+      div #{dessertcolor}

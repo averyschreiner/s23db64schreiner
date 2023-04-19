@@ -84,8 +84,7 @@ exports.dessert_update_put = async function(req, res) {
     try {
         let toUpdate = await Dessert.findById( req.params.id)
         // Do updates of properties
-        if(req.body.name)
-        toUpdate.name = req.body.name;
+        if(req.body.name) toUpdate.name = req.body.name;
         if(req.body.rating) toUpdate.rating = req.body.rating;
         if(req.body.color) toUpdate.size = req.body.color;
         let result = await toUpdate.save();
@@ -102,25 +101,25 @@ exports.dessert_update_put = async function(req, res) {
 exports.dessert_delete = async function(req, res) {
     console.log("delete " + req.params.id)
     try {
-    result = await Dessert.findByIdAndDelete(req.params.id)
-    console.log("Removed " + result)
-    res.send(result)
+        result = await Dessert.findByIdAndDelete(req.params.id)
+        console.log("Removed " + result)
+        res.send(result)
     } catch (err) {
-    res.status(500)
-    res.send(`{"error": Error deleting ${err}}`);
-    }
+        res.status(500)
+        res.send(`{"error": Error deleting ${err}}`);
+        }
 };
 
 // Handle a show one view with id specified by query
 exports.dessert_view_one_Page = async function(req, res) {
     console.log("single view for id " + req.query.id)
     try{
-    result = await Dessert.findById( req.query.id)
-    res.render('dessertdetail',
-    { title: 'Dessert Detail', toShow: result });
+        result = await Dessert.findById( req.query.id)
+        console.log('\n\n' + result + '\n\n')
+        res.render('dessertdetail', { title: 'Dessert Detail', toShow: result });
     }
     catch(err){
-    res.status(500)
-    res.send(`{'error': '${err}'}`);
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
     }
 };
