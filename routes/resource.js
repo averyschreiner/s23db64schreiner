@@ -19,5 +19,7 @@ router.get('/desserts/:id', dessert_controller.dessert_detail);
 router.get('/desserts', dessert_controller.dessert_list);
 /* GET detail dessert page */
 router.get('/detail', dessert_controller.dessert_view_one_Page);
+/* GET create dessert page */
+router.get('/create', dessert_controller.dessert_create_Page);
 
 module.exports = router;
