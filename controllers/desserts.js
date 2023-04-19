@@ -137,3 +137,31 @@ exports.dessert_create_Page = function(req, res) {
         res.send(`{'error': '${err}'}`);
     }
 };
+
+// Handle building the view for updating a dessert.
+// query provides the id
+exports.dessert_update_Page = async function(req, res) {
+    console.log("update view for item " + req.query.id)
+    try{
+        let result = await Dessert.findById(req.query.id)
+        res.render('dessertupdate', { title: 'Dessert Update', toShow: result });
+    }
+    catch(err){
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
+
+// Handle a delete one view with id from query
+exports.dessert_delete_Page = async function(req, res) {
+    console.log("Delete view for id " + req.query.id)
+    try{
+        result = await Dessert.findById(req.query.id)
+        console.log('\n\n' + result + '\n\n')
+        res.render('dessertdelete', { title: 'Dessert Delete', toShow: result });
+    }
+    catch(err){
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};

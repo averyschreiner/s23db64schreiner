@@ -21,5 +21,11 @@ router.get('/desserts', dessert_controller.dessert_list);
 router.get('/detail', dessert_controller.dessert_view_one_Page);
 /* GET create dessert page */
 router.get('/create', dessert_controller.dessert_create_Page);
+/* GET create update page */
+router.get('/update', dessert_controller.dessert_update_Page);
+/* GET delete dessert page */
+router.get('/delete', dessert_controller.dessert_delete_Page);
+
+
 
 module.exports = router;
