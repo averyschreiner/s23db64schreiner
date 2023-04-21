@@ -2,14 +2,15 @@ extends layout
 
 block content
   h1= title
-
-    //- let results = [{name: 'Pie', rating: 10, color: 'light brown w/ either red, blue, orange, etc.'},
-    //- {name: 'Cookie', rating: 7, color: 'brown'},
-    //- {name: 'Ice Cream', rating: 10, color: 'usually white, but sometimes brown, pink, etc.'}];
-  results = results
+  let results = results
 
   div(class='container-fluid')
-    div(class='row')
+    div(class='col m-1')
       each dessert in results 
-        div(class='col-sm-2') name: #{dessert.name} rating: #{dessert.rating} color: #{dessert.color}
-
+        - let destination = `dispatch(\"/resource/update?id=${dessert._id}\")`
+        div(class='row-sm-2') name: #{dessert.name} rating: #{dessert.rating} color: #{dessert.color}
+          button(class="btn btn-primary ml-1", onclick=destination) Update
+  script.
+    function dispatch(path){
+      window.location.href=path
+    }
