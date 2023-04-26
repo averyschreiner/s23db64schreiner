@@ -37,7 +37,7 @@ router.post('/register', function(req, res) {
 router.get('/login', function(req, res) {
   res.render('login', { title: 'Dessert App Login', user : req.user })
 })
-router.post('/login', passport.authenticate('local'), function(req, res) {
+// router.post('/login', passport.authenticate('local'), function(req, res) {
   // Account.findOne({ username : req.body.username })
   // .then(function (user){
   //   if(user != null ){
@@ -52,8 +52,32 @@ router.post('/login', passport.authenticate('local'), function(req, res) {
   // .catch(function (err){
   //   return res.render('login', { title: 'Login', message: 'Login error', account : req.body.username })
   // })
-  if(req.session.returnTo)
-    res.redirect(req.session.returnTo);
-  res.redirect('/')
-})
+//   if(req.session.returnTo)
+//     res.redirect(req.session.returnTo);
+//   res.redirect('/')
+// })
+// module.exports = router;
+
+router.post('/login', passport.authenticate('local'), function(req, res) {
+  if(req.session.toReturn){
+    console.log("Send it back to " + req.session.toReturn)
+    res.redirect(req.session.toReturn);
+  }
+  res.redirect('/');
+});
+
+router.get('/logout', function(req, res) {
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    res.redirect('/');
+  });
+});
+
+router.get('/ping', function(req, res){
+  res.status(200).send("pong!");
+});
+
+router.get('/ping', function(req, res){
+  res.status(200).send("pong!");
+});
 module.exports = router;

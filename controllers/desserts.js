@@ -82,11 +82,14 @@ exports.dessert_detail = async function(req, res) {
 exports.dessert_update_put = async function(req, res) {
     console.log(`update on id ${req.params.id} with body ${JSON.stringify(req.body)}`)
     try {
-        let toUpdate = await Dessert.findById( req.params.id)
+        let toUpdate = await Dessert.findById(req.params.id)
         // Do updates of properties
-        if(req.body.name) toUpdate.name = req.body.name;
-        if(req.body.rating) toUpdate.rating = req.body.rating;
-        if(req.body.color) toUpdate.size = req.body.color;
+        if(req.body.dessertname) 
+            toUpdate.name = req.body.dessertname;
+        if(req.body.dessertrating) 
+            toUpdate.rating = req.body.dessertrating;
+        if(req.body.dessertcolor) 
+            toUpdate.size = req.body.dessertcolor;
         let result = await toUpdate.save();
         console.log("Sucess " + result)
         res.send(result)
