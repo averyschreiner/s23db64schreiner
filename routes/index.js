@@ -37,20 +37,23 @@ router.post('/register', function(req, res) {
 router.get('/login', function(req, res) {
   res.render('login', { title: 'Dessert App Login', user : req.user })
 })
-router.post('/login', function(req, res) {
-  Account.findOne({ username : req.body.username })
-  .then(function (user){
-    if(user != null ){
-      console.log("login successful " + user)
-      return res.render('index', { user: user})
-    }
-    else {
-      console.log('user not found')
-      return res.render('register', { title: 'No user found. Create an account here'})
-    }
-  })
-  .catch(function (err){
-    return res.render('login', { title: 'Login', message: 'Login error', account : req.body.username })
-  })
+router.post('/login', passport.authenticate('local'), function(req, res) {
+  // Account.findOne({ username : req.body.username })
+  // .then(function (user){
+  //   if(user != null ){
+  //     console.log("login successful " + user)
+  //     return res.render('index', { user: user})
+  //   }
+  //   else {
+  //     console.log('user not found')
+  //     return res.render('register', { title: 'No user found. Create an account here'})
+  //   }
+  // })
+  // .catch(function (err){
+  //   return res.render('login', { title: 'Login', message: 'Login error', account : req.body.username })
+  // })
+  if(req.session.returnTo)
+    res.redirect(req.session.returnTo);
+  res.redirect('/')
 })
 module.exports = router;
